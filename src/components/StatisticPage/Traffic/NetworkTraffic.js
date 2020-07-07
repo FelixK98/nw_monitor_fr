@@ -3,19 +3,23 @@ import LineChart from './LineChart';
 import { getEventStatistic, getTodayTraffic } from '../../../apis/event';
 class NetworkTraffic extends React.Component {
   state = { wan: [], lan: [], management: [], dmz: [] };
-  queryStatistic = () => {
+
+  getTraffic = async () => {
+    let trafficQuery = getEventStatistic;
+    let selectedDate = 30;
     switch (this.props.selectOption) {
       case 'Today':
-        return getTodayTraffic;
-      default:
-        return getEventStatistic;
+        trafficQuery = getTodayTraffic;
+        break;
+      case '7 days latest':
+        selectedDate = 7;
+        break;
     }
-  };
-  getTraffic = async () => {
-    const wan = await this.queryStatistic()('WAN');
-    const lan = await this.queryStatistic()('LAN');
-    const management = await this.queryStatistic()('MANAGEMENT');
-    const dmz = await this.queryStatistic()('DMZ');
+    console.log(selectedDate);
+    const wan = await trafficQuery('WAN', selectedDate);
+    const lan = await trafficQuery('LAN', selectedDate);
+    const management = await trafficQuery('MANAGEMENT', selectedDate);
+    const dmz = await trafficQuery('DMZ', selectedDate);
     this.setState({ wan, lan, management, dmz });
   };
   componentDidMount() {

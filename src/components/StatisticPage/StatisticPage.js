@@ -39,6 +39,7 @@ class StatisticPage extends React.Component {
                 onChange={this.handleSelect}
               >
                 <option>30 days latest</option>
+                <option>7 days latest</option>
                 <option>Today</option>
               </select>
             </h4>

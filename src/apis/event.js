@@ -18,8 +18,10 @@ export const getEventByDate = async (startDate, endDate) => {
   return response.data;
 };
 
-export const getEventStatistic = async (network) => {
-  const response = await sig.get(`/events/traffic/${network}`);
+export const getEventStatistic = async (network, dates) => {
+  const response = await sig.get(
+    `/events/getTrafficByDate/${network}/${dates}`
+  );
   return response.data;
 };
 export const getTodayTraffic = async (network) => {
