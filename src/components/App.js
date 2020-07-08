@@ -21,6 +21,7 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     const userInfo = await getUserInfo();
+
     this.setState({ userInfo });
   };
 

@@ -58,6 +58,7 @@ class AlertTable extends React.Component {
         entries={5}
         pagesAmount={4}
         data={table}
+        exportToCSV
       />
     );
   }

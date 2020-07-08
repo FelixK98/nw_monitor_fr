@@ -1,8 +1,10 @@
 import React from 'react';
 import AlertTable from './AlertTable';
+import ExportExcel from './ExportExcel';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getAllEvents, getEventByDate } from '../../apis/event';
+
 class Content extends React.Component {
   state = { startDateTime: '', endDateTime: '', events: [] };
   filterDate = async () => {
@@ -62,6 +64,9 @@ class Content extends React.Component {
                 dateFormat="yyyy-MM-dd HH:mm:ss"
                 className="form-control"
               />
+            </div>
+            <div className="col-md-3">
+              <ExportExcel data={this.state.events} />
             </div>
           </div>
         </div>
