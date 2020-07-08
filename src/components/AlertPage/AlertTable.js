@@ -2,6 +2,9 @@ import React from 'react';
 import { MDBDataTableV5 } from 'mdbreact';
 
 class AlertTable extends React.Component {
+  onSearch = (searchValue) => {
+    this.props.getSearchValue(searchValue);
+  };
   render() {
     const table = {
       columns: [
@@ -58,7 +61,7 @@ class AlertTable extends React.Component {
         entries={5}
         pagesAmount={4}
         data={table}
-        exportToCSV
+        onSearch={this.onSearch}
       />
     );
   }

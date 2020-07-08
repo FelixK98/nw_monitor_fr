@@ -6,7 +6,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { getAllEvents, getEventByDate } from '../../apis/event';
 
 class Content extends React.Component {
-  state = { startDateTime: '', endDateTime: '', events: [] };
+  state = { startDateTime: '', endDateTime: '', events: [], searchValue: '' };
+  getSearchValue = (searchValue) => {
+    console.log(searchValue);
+    this.setState({ searchValue });
+  };
   filterDate = async () => {
     const startDateTime =
       this.state.startDateTime && this.state.startDateTime.toISOString();
@@ -66,13 +70,19 @@ class Content extends React.Component {
               />
             </div>
             <div className="col-md-3">
-              <ExportExcel data={this.state.events} />
+              <ExportExcel
+                data={this.state.events}
+                searchValue={this.state.searchValue}
+              />
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
-            <AlertTable events={this.state.events} />
+            <AlertTable
+              events={this.state.events}
+              getSearchValue={this.getSearchValue}
+            />
           </div>
         </div>
       </div>
