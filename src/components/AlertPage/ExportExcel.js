@@ -13,15 +13,16 @@ class ExportExcel extends React.Component {
     ];
 
     const data =
-      this.props.data &&
-      this.props.data.filter((item) => {
-        const rowData = Object.values(item);
-        let isValid = false;
-        if (rowData.includes(this.props.searchValue)) {
-          isValid = true;
-        }
-        return isValid;
-      });
+      this.props.searchValue === ''
+        ? this.props.data
+        : this.props.data.filter((item) => {
+            const rowData = Object.values(item);
+            let isValid = false;
+            if (rowData.includes(this.props.searchValue)) {
+              isValid = true;
+            }
+            return isValid;
+          });
     return (
       <button className="btn btn-success btn-tone">
         <CSVLink data={data} headers={headers} filename="report.csv">
