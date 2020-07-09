@@ -28,18 +28,18 @@ class AlertTable extends React.Component {
           width: 200,
         },
         {
-          label: 'Class Type',
-          field: 'Class Type',
+          label: 'Interface',
+          field: 'Interface',
           width: 100,
         },
         {
-          label: 'Source Address',
+          label: 'Src Addr',
           field: 'Source Address',
 
           width: 150,
         },
         {
-          label: 'Destination Address',
+          label: 'Dst Addr',
           field: 'Destination Address',
 
           width: 100,
