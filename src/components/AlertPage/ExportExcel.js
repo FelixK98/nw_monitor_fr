@@ -6,7 +6,7 @@ class ExportExcel extends React.Component {
       { label: 'Time', key: 'Time' },
       { label: 'Priority', key: 'Priority' },
       { label: 'Protocol', key: 'Protocol' },
-      { label: 'Class Type', key: 'Class Type' },
+      { label: 'Interface', key: 'Interface' },
       { label: 'Source Address', key: 'Source Address' },
       { label: 'Destination Address', key: 'Destination Address' },
       { label: 'Description', key: 'Description' },

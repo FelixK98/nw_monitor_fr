@@ -25,8 +25,8 @@ class EventBySignatureTable extends React.Component {
           width: 200,
         },
         {
-          label: 'Class Type',
-          field: 'Class Type',
+          label: 'Interface',
+          field: 'Interface',
           width: 100,
         },
         {

@@ -8,8 +8,7 @@ class TopSignatureAlert extends React.Component {
 
   async componentDidMount() {
     const topSig = await getSigTop();
-    console.log('----------------');
-    console.log(topSig);
+
     this.setState({ topSig });
   }
   onHideAlertModal = () => {
