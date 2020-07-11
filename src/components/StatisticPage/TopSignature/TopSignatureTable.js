@@ -2,17 +2,19 @@ import React from 'react';
 
 const TopSignatureTable = ({ topSig, showAlertModal }) => {
   const renderContent = () => {
-    return topSig.map((item, index) => {
-      const handleOnclick = () => {
-        showAlertModal(item.signame);
-      };
-      return (
-        <tr onClick={handleOnclick} style={{ cursor: 'pointer' }} key={index}>
-          <th scope="row">{index + 1}</th>
-          <td>{item.signame}</td>
-          <td>
-            {item.count}
-            {/* <div className="d-flex align-items-center">
+    return (
+      topSig &&
+      topSig.map((item, index) => {
+        const handleOnclick = () => {
+          showAlertModal(item.signame);
+        };
+        return (
+          <tr onClick={handleOnclick} style={{ cursor: 'pointer' }} key={index}>
+            <th scope="row">{index + 1}</th>
+            <td>{item.signame}</td>
+            <td>
+              {item.count}
+              {/* <div className="d-flex align-items-center">
               <div className="progress progress-sm w-100 m-b-0">
                 <div
                   className={`progress-bar bg-${item.color}`}
@@ -21,11 +23,12 @@ const TopSignatureTable = ({ topSig, showAlertModal }) => {
               </div>
               <div className="m-l-10">{item.count}</div>
             </div> */}
-            {/* {item.count} */}
-          </td>
-        </tr>
-      );
-    });
+              {/* {item.count} */}
+            </td>
+          </tr>
+        );
+      })
+    );
   };
   return (
     <div className="table-responsive">

@@ -47,7 +47,7 @@ class NodeItem extends React.Component {
     while (true) {
       const isOnline = await getNodesOnlineOffline(this.props.node.ip);
       this.setState({ isOnline });
-      await sleep(5000);
+      await sleep(30000);
     }
   }
 
