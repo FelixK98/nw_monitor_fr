@@ -1,6 +1,10 @@
 import React from 'react';
 import LineChart from './LineChart';
-import { getEventStatistic, getTodayTraffic } from '../../../apis/event';
+import {
+  getEventStatistic,
+  getTodayTraffic,
+  getMonthTraffic,
+} from '../../../apis/event';
 class NetworkTraffic extends React.Component {
   state = { wan: [], lan: [], management: [], dmz: [] };
 
@@ -14,8 +18,11 @@ class NetworkTraffic extends React.Component {
       case '7 days latest':
         selectedDate = 7;
         break;
+      case 'Months':
+        trafficQuery = getMonthTraffic;
+        break;
     }
-    console.log(selectedDate);
+
     const wan = await trafficQuery('WAN', selectedDate);
     const lan = await trafficQuery('LAN', selectedDate);
     const management = await trafficQuery('MANAGEMENT', selectedDate);

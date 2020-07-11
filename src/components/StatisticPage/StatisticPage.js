@@ -41,6 +41,7 @@ class StatisticPage extends React.Component {
                 <option>30 days latest</option>
                 <option>7 days latest</option>
                 <option>Today</option>
+                <option>Months</option>
               </select>
             </h4>
           </div>

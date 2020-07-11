@@ -28,6 +28,10 @@ export const getTodayTraffic = async (network) => {
   const response = await sig.get(`/events/getTodayTraffic/${network}`);
   return response.data;
 };
+export const getMonthTraffic = async (network) => {
+  const response = await sig.get(`/events/getMonthTraffic/${network}`);
+  return response.data;
+};
 
 export const getPriorityCount = async () => {
   const response = await sig.get('/events/getPriorities');
