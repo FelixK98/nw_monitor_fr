@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const NavBar = ({ name, isLogined, img, link }) => {
+const NavBar = ({ name, isLogined, img, link, isValid }) => {
   // const onGoogleClick = () => {
   //   if (isLogined) {
   //     onSignOut();
@@ -43,7 +43,7 @@ const NavBar = ({ name, isLogined, img, link }) => {
             <img
               style={{ height: '40px', width: '40px' }}
               className="img-profile rounded-circle"
-              src={isLogined ? img : require('../../img/guest.jpg')}
+              src={isValid ? img : require('../../img/guest.jpg')}
               alt=""
             />
           </Link>

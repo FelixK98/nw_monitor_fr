@@ -88,10 +88,15 @@ class App extends React.Component {
             <div id="content">
               <NavBar
                 name={this.state.userInfo.name}
-                isLogined={this.state.userInfo.user_type === 'valid'}
+                isLogined={
+                  this.state.userInfo.user_type === 'valid' ||
+                  this.state.userInfo.user_type === 'invalid'
+                }
+                isValid={this.state.userInfo.user_type === 'valid'}
                 img={this.state.userInfo.photo}
                 link={
-                  this.state.userInfo.user_type === 'valid'
+                  this.state.userInfo.user_type === 'valid' ||
+                  this.state.userInfo.user_type === 'invalid'
                     ? 'logout'
                     : 'google'
                 }
