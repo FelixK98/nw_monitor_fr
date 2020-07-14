@@ -17,6 +17,16 @@ export const getNodesByIP = async (ip) => {
 
   return response.data;
 };
+export const getNodesCount = async (iface) => {
+  const response = await axios.get(`/nodes/getNodeCount/${iface}`);
+
+  return response.data;
+};
+export const getNodeEvents = async (name) => {
+  const response = await axios.get(`/nodes/getNodeEvents/${name}`);
+
+  return response.data;
+};
 export const addNode = async (ip, name, type) => {
   const response = await axios.get('/nodes/addNode', {
     params: {
