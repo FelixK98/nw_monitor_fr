@@ -1,11 +1,15 @@
 import React from 'react';
-import { getBlockList, unblockIP } from '../../apis/block_ip';
+import { unblockIP } from '../../apis/block_ip';
 import BlockListTable from './BlockListTable';
+import {
+  getBlockList as getFromMySQL,
+  deleteBlockIP,
+} from '../../apis/block_ip_nodejs';
 class BlockListPage extends React.Component {
   state = { blockList: [] };
 
   getBlockList = async () => {
-    let blockList = await getBlockList();
+    let blockList = await getFromMySQL();
     // let blockListArr = [];
     // blockListArr = blockListArr.concat(
     //   blockList.wan,
@@ -18,6 +22,7 @@ class BlockListPage extends React.Component {
   };
   onUnblockIP = async (ip) => {
     await unblockIP(ip);
+    await deleteBlockIP(ip);
     this.getBlockList();
   };
 
@@ -28,7 +33,7 @@ class BlockListPage extends React.Component {
   render() {
     return (
       <div className="row m-3">
-        <div className="offset-md-4 col-md-4">
+        <div className="offset-md-3 col-md-6">
           <BlockListTable
             blockListArr={this.state.blockList}
             onUnblockIP={this.onUnblockIP}

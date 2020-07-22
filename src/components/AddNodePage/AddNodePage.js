@@ -25,6 +25,7 @@ class AddNodePage extends React.Component {
         isDuplicate = true;
       }
     });
+    return isDuplicate;
   };
   isPredefinedIP(ip) {
     let isPredefinedIP = false;
@@ -62,6 +63,7 @@ class AddNodePage extends React.Component {
     const name = document.getElementById('hostInput').value.toUpperCase();
     const type = document.getElementById('typeInput').value;
     let errMsg = '';
+
     let isDuplicate = this.isDuplicate(ip, name);
     if (isDuplicate) {
       return;

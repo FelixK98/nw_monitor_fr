@@ -21,6 +21,8 @@ class NetworkTraffic extends React.Component {
       case 'Months':
         trafficQuery = getMonthTraffic;
         break;
+      default:
+        break;
     }
 
     const wan = await trafficQuery('WAN', selectedDate);

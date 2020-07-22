@@ -5,6 +5,7 @@ import { getTime } from '../../apis/event';
 import TimeModal from './TimeModal';
 class DetailCulpritModal extends React.Component {
   state = { showTimeModal: false, times: [] };
+
   onHide = () => {
     this.props.onHide(false);
   };
@@ -32,14 +33,14 @@ class DetailCulpritModal extends React.Component {
           <td>
             <span
               className={`badge badge-${
-                item.status == 'Active' ? 'success' : 'danger'
+                item.status === 'Active' ? 'success' : 'danger'
               } `}
             >
               {item.status}
             </span>
           </td>
           <td>
-            {item.status == 'Active' ? (
+            {item.status === 'Active' ? (
               <button
                 onClick={onAddBlockIP}
                 className="btn btn-danger btn-tone m-0"

@@ -3,6 +3,10 @@ import { Modal, Button } from 'react-bootstrap';
 import NodeDoughnutChart from './NodeDoughnutChart';
 import { getCulpritDetailBySigAndIP } from '../../apis/ip';
 import { unblockIP, addBlockIP, getBlockList } from '../../apis/block_ip';
+import {
+  addBlockIP as addToMySQL,
+  deleteBlockIP,
+} from '../../apis/block_ip_nodejs';
 import DetailCulpritModal from '../ComonPage/DetailCulpritModal';
 class NodeModal extends React.Component {
   state = { alertCulpritDetail: [], target: '', show: false };
@@ -29,6 +33,8 @@ class NodeModal extends React.Component {
         return 'opt1';
       case 'DMZ':
         return 'opt2';
+      default:
+        return '';
     }
   }
   onItemClick = (e) => {
@@ -63,10 +69,12 @@ class NodeModal extends React.Component {
   };
   onAddBlockIP = async (ip) => {
     await addBlockIP(ip);
+    await addToMySQL(ip);
     this.handleItemDetail(this.state.target);
   };
   onUnblockIP = async (ip) => {
     await unblockIP(ip);
+    await deleteBlockIP(ip);
     this.handleItemDetail(this.state.target);
   };
   renderAlertList = () => {

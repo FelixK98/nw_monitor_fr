@@ -3,7 +3,7 @@ import AccountInfo from './AccountInfo';
 
 import { getUserInfo, getOnlineAccount } from '../../apis/authentication';
 import OnlineAccounts from './OnlineAccounts';
-import AddAccount from '../AddAccountPage/AddAccountPage';
+
 class AccountPage extends React.Component {
   state = { userInfo: {}, onlineAccount: [] };
 

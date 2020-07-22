@@ -36,7 +36,7 @@ class NodeList extends React.Component {
     this.setState({ show: true, data, selectedIP });
   };
   async componentDidUpdate(prevProps) {
-    if (this.props.match.params.network != prevProps.match.params.network) {
+    if (this.props.match.params.network !== prevProps.match.params.network) {
       this.getNodes();
     }
   }

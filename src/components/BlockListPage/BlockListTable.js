@@ -4,12 +4,13 @@ class BlockListTable extends React.Component {
   renderBlockList = () => {
     return this.props.blockListArr.map((item, index) => {
       const onUnblockIP = (e) => {
-        this.props.onUnblockIP(item);
+        this.props.onUnblockIP(item.ip);
       };
       return (
         <tr key={index}>
           <th scope="row">{index}</th>
-          <td>{item}</td>
+          <td>{item.ip}</td>
+          <td>{item.time}</td>
           <td>
             <button
               onClick={onUnblockIP}
@@ -30,6 +31,7 @@ class BlockListTable extends React.Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">IP</th>
+              <th scope="col">Time</th>
               <th scope="col">Action</th>
             </tr>
           </thead>

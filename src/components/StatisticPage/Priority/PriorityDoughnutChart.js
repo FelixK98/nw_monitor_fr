@@ -4,6 +4,10 @@ import { colors } from '../../../PredefineValue';
 import DetailCulpritModal from '../../ComonPage/DetailCulpritModal';
 import { getCulpritDetail } from '../../../apis/ip';
 import { getBlockList, addBlockIP, unblockIP } from '../../../apis/block_ip';
+import {
+  addBlockIP as addToMySQL,
+  deleteBlockIP,
+} from '../../../apis/block_ip_nodejs';
 class PriorityDoughnutChart extends React.Component {
   state = { show: false, alertCulpritDetail: [], target: '' };
   data = {
@@ -42,10 +46,12 @@ class PriorityDoughnutChart extends React.Component {
   };
   onAddBlockIP = async (ip) => {
     await addBlockIP(ip);
+    await addToMySQL(ip);
     this.handleItemDetail(this.state.target);
   };
   onUnblockIP = async (ip) => {
     await unblockIP(ip);
+    await deleteBlockIP(ip);
     this.handleItemDetail(this.state.target);
   };
   onHide = () => {
@@ -79,7 +85,10 @@ class PriorityDoughnutChart extends React.Component {
           <Doughnut data={this.data} />
         </div>
         <div className="list-group col-md-12 text-center">
-          <a href="#" className="list-group-item list-group-item-action active">
+          <a
+            href="#/"
+            className="list-group-item list-group-item-action active"
+          >
             View Detail
           </a>
           {this.renderAlertList()}

@@ -82,7 +82,7 @@ class PriorityList extends React.Component {
         <PriorityItem
           onClick={this.onDetailClick}
           icon="anticon anticon-safety"
-          title="SAFE"
+          title="INFO"
           count={0}
           color="primary"
           priority={
