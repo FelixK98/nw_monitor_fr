@@ -87,3 +87,7 @@ card-default,
   background: #607d8b;
   color: #ffffff !important;
 }
+
+td {
+  font-size: 15px;
+}

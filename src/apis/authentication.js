@@ -12,7 +12,3 @@ export const getOnlineAccount = async () => {
   const response = await axios.get('/auth/online_account');
   return response.data;
 };
-export const addAccount = async (email) => {
-  const response = await axios.get(`/auth/addAccount/${email}`);
-  return response.data;
-};

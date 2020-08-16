@@ -2,17 +2,22 @@ import React from 'react';
 import PriorityList from './Priority/PriorityList';
 import NetworkTraffic from './Traffic/NetworkTraffic';
 import TopSignatureAlert from './TopSignature/TopSignatureAlert';
-import NodeStatistic from './IpStatistic/NodeStatistic';
+// import NodeStatistic from './IpStatistic/NodeStatistic';
 import NodeList from './NodeTable/NodeList';
-import {
-  getStatisticLocalSourceIp,
-  getStatisticExternalSourceIp,
-  getStatisticLocalDstIp,
-  getStatisticExternalDstIp,
-} from '../../apis/ip';
+// import {
+//   getStatisticLocalSourceIp,
+//   getStatisticExternalSourceIp,
+//   getStatisticLocalDstIp,
+//   getStatisticExternalDstIp,
+// } from '../../apis/ip';
 
 class StatisticPage extends React.Component {
-  state = { selectStatisticOption: '30 days latest', nodeIface: 'LAN' };
+  state = {
+    selectStatisticOption: '30 days latest',
+    selectPriorityOption: 'Total',
+    nodeIface: 'LAN',
+    signatureOption: 'Total',
+  };
   handleSelect = (e) => {
     const selectStatisticOption = e.target.value;
     this.setState({ selectStatisticOption });
@@ -21,16 +26,38 @@ class StatisticPage extends React.Component {
     const nodeIface = e.target.value;
     this.setState({ nodeIface });
   };
+  handlePriorityChoice = (e) => {
+    const selectPriorityOption = e.target.value;
+    this.setState({ selectPriorityOption });
+  };
+  handleSignatureChoice = (e) => {
+    const signatureOption = e.target.value;
+    this.setState({ signatureOption });
+  };
+
   render() {
     return (
       <>
         <div className="card" style={{ width: '100%' }}>
-          <div className="card-header text-center">
-            <h4 className="card-title">Priority Count</h4>
+          <div className="card-header text-center offset-md-4 col-md-4">
+            <h4 className="card-title">
+              Priority Count
+              <select
+                className="form-control"
+                id="priorityCount"
+                onChange={this.handlePriorityChoice}
+              >
+                <option>Total</option>
+                <option>Today</option>
+              </select>
+            </h4>
           </div>
+
           <div className="card-body">
             <div className="row ">
-              <PriorityList />
+              <PriorityList
+                selectPriorityOption={this.state.selectPriorityOption}
+              />
             </div>
           </div>
         </div>
@@ -62,12 +89,22 @@ class StatisticPage extends React.Component {
         </div>
         <div className="card" style={{ width: '100%' }}>
           <div className="card-header text-center">
-            <h4 className="card-title">Packet Count</h4>
+            <h4 className="card-title offset-md-4 col-md-4">
+              Top 10 Signature
+              <select
+                className="form-control"
+                id="signatureChoice"
+                onChange={this.handleSignatureChoice}
+              >
+                <option>Total</option>
+                <option>Today</option>
+              </select>
+            </h4>
           </div>
           <div className="card-body">
             <div className="row m-3">
               <div className=" offset-md-1 col-md-10 col-xs-12">
-                <TopSignatureAlert />
+                <TopSignatureAlert selectOption={this.state.signatureOption} />
               </div>
             </div>
           </div>
@@ -93,7 +130,7 @@ class StatisticPage extends React.Component {
             </div>
           </div>
         </div>
-
+        {/* 
         <div className="row m-3">
           <div className="col-md-6 col-xs-12">
             <NodeStatistic
@@ -107,8 +144,8 @@ class StatisticPage extends React.Component {
               getStatistic={getStatisticExternalSourceIp}
             />
           </div>
-        </div>
-        <div className="row m-3">
+        </div> */}
+        {/* <div className="row m-3">
           <div className="col-md-6 col-xs-12">
             <NodeStatistic
               title="Local Destination Packet Statistic(TOP10)"
@@ -121,7 +158,7 @@ class StatisticPage extends React.Component {
               getStatistic={getStatisticExternalDstIp}
             />
           </div>
-        </div>
+        </div> */}
       </>
     );
   }

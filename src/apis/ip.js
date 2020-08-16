@@ -15,6 +15,10 @@ export const getCulpritDetail = async (signame) => {
   const response = await axios.get(`/ip/getCulpritDetail/${signame}`);
   return response.data;
 };
+export const getTodayCulpritDetail = async (signame) => {
+  const response = await axios.get(`/ip/getTodayCulpritDetail/${signame}`);
+  return response.data;
+};
 export const getStatisticLocalSourceIp = async () => {
   const response = await axios.get('ip/statistic/src/local');
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const PriorityAlert = ({ icon, count, title, color, onClick, priority }) => {
   const onAlertClick = () => {
-    onClick(priority);
+    onClick(priority, title);
   };
   return (
     <div className="col-md-3">

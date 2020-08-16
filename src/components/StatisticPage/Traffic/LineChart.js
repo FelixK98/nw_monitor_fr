@@ -28,8 +28,8 @@ const LineChart = ({ wan, lan, management, dmz }) => {
   const managementSet = { ...datasetProto };
   const dmzSet = { ...datasetProto };
   //color
-  lanSet.borderColor = 'rgb(77, 228, 153)';
-  lanSet.backgroundColor = 'rgba(77, 228, 153,0.4)';
+  lanSet.borderColor = 'rgb(204, 102, 0)';
+  lanSet.backgroundColor = 'rgba(204, 102, 0,0.4)';
   managementSet.borderColor = 'rgb(191, 63, 191)';
   managementSet.backgroundColor = 'rgba(191, 63, 191, 0.4)';
   dmzSet.borderColor = 'rgb(191, 191, 63)';

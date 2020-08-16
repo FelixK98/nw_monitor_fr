@@ -1,6 +1,6 @@
 import React from 'react';
 import validator from 'validator';
-import { addAccount } from '../../apis/authentication';
+import { addAccount } from '../../apis/account';
 class AddAccountPage extends React.Component {
   state = { emailState: '', errMsg: 'Email is not valid' };
 
@@ -23,10 +23,10 @@ class AddAccountPage extends React.Component {
     switch (this.state.emailState) {
       case 'valid':
         return (
-          <div class="alert alert-success">
-            <div class="d-flex align-items-center justify-content-start">
-              <span class="alert-icon">
-                <i class="anticon anticon-info-o"></i>
+          <div className="alert alert-success">
+            <div className="d-flex align-items-center justify-content-start">
+              <span className="alert-icon">
+                <i className="anticon anticon-info-o"></i>
               </span>
               <span>Add email successfully!!!</span>
             </div>
@@ -34,10 +34,10 @@ class AddAccountPage extends React.Component {
         );
       case 'invalid':
         return (
-          <div class="alert alert-danger">
-            <div class="d-flex align-items-center justify-content-start">
-              <span class="alert-icon">
-                <i class="anticon anticon-close-o"></i>
+          <div className="alert alert-danger">
+            <div className="d-flex align-items-center justify-content-start">
+              <span className="alert-icon">
+                <i className="anticon anticon-close-o"></i>
               </span>
               <span>{this.state.errMsg}</span>
             </div>
@@ -53,13 +53,13 @@ class AddAccountPage extends React.Component {
   render() {
     return (
       <>
-        <div class="row m-3">
-          <div class="card  col-md-5">
-            <div class="card-header">
-              <div class="card-title">ADD ACCOUNT</div>
+        <div className="row m-3">
+          <div className="card  col-md-5">
+            <div className="card-header">
+              <div className="card-title">ADD ACCOUNT</div>
             </div>
-            <div class="card-body">
-              <div class="form-group">
+            <div className="card-body">
+              <div className="form-group">
                 <form style={{ width: '100%' }} onSubmit={this.onAddAccount}>
                   <div className="row">
                     <div className="col-md-8">
@@ -67,15 +67,15 @@ class AddAccountPage extends React.Component {
                         onChange={this.removeAlert}
                         id="email"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Email"
                       />
                     </div>
 
-                    <div class="col-md-4">
+                    <div className="col-md-4">
                       <input
                         type="submit"
-                        class="btn btn-primary btn-tone m-r-5"
+                        className="btn btn-primary btn-tone m-r-5"
                         value="Add"
                       />
                     </div>
@@ -83,7 +83,7 @@ class AddAccountPage extends React.Component {
                 </form>
               </div>
             </div>
-            <div class="card-action">{this.renderAlert()}</div>
+            <div className="card-action">{this.renderAlert()}</div>
           </div>
         </div>
       </>

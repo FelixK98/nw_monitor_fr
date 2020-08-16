@@ -3,6 +3,7 @@ import React from 'react';
 import NodeEventModal from './NodeEventModal';
 import NodeTable from './NodeTable';
 import { getNodesCount, getNodeEvents } from '../../../apis/local_nodes';
+import NodeChart from './NodeChart';
 class NodeList extends React.Component {
   state = { nodeList: [], showNodeEventModal: false, events: [], nodeName: '' };
 
@@ -37,6 +38,7 @@ class NodeList extends React.Component {
           name={this.state.nodeName}
           events={this.state.events}
         />
+        <NodeChart nodeList={this.state.nodeList} />
         <NodeTable
           nodeList={this.state.nodeList}
           onShowNodeEventModal={this.onShowNodeEventModal}

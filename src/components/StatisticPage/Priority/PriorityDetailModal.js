@@ -23,7 +23,10 @@ class PriorityDetailModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           {/* <h4>Centered Modal</h4> */}
-          <PriorityDoughnutChart detail={this.props.detail} />
+          <PriorityDoughnutChart
+            detail={this.props.detail}
+            option={this.props.option}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.onHide}>Close</Button>

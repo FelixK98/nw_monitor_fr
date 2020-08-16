@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button } from 'react-bootstrap';
-import { getTime } from '../../apis/event';
+import { getTime, getTodayTime } from '../../apis/event';
 import TimeModal from './TimeModal';
 class DetailCulpritModal extends React.Component {
   state = { showTimeModal: false, times: [] };
@@ -21,7 +21,11 @@ class DetailCulpritModal extends React.Component {
         this.props.onUnblockIP(item.ip);
       };
       const handleViewTime = async () => {
-        const times = await getTime(item.ip, this.props.target);
+        let times = [];
+        if (this.props.option === 'Today')
+          times = await getTodayTime(item.ip, this.props.target);
+        else times = await getTime(item.ip, this.props.target);
+
         const showTimeModal = true;
         this.setState({ showTimeModal, times });
       };

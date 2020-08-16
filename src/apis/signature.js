@@ -11,3 +11,8 @@ export const getSigTop = async () => {
 
   return response.data;
 };
+export const getTodaySigTop = async () => {
+  const response = await sig.get('/sig/top/today');
+
+  return response.data;
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { colors } from '../../../PredefineValue';
 import DetailCulpritModal from '../../ComonPage/DetailCulpritModal';
-import { getCulpritDetail } from '../../../apis/ip';
+import { getCulpritDetail, getTodayCulpritDetail } from '../../../apis/ip';
 import { getBlockList, addBlockIP, unblockIP } from '../../../apis/block_ip';
 import {
   addBlockIP as addToMySQL,
@@ -24,16 +24,20 @@ class PriorityDoughnutChart extends React.Component {
     const eventValue = e.target.value;
     this.handleItemDetail(eventValue);
   };
+  getCulpritApi = async (sigName) => {
+    let culprits = [];
+    switch (this.props.option) {
+      case 'Today':
+        culprits = await getTodayCulpritDetail(sigName);
+        break;
+      default:
+        culprits = await getCulpritDetail(sigName);
+    }
+    return culprits;
+  };
   handleItemDetail = async (eventValue) => {
-    let alertCulpritDetail = await getCulpritDetail(eventValue);
+    let alertCulpritDetail = await this.getCulpritApi(eventValue);
     let blockList = await getBlockList();
-    // let blockListArr = [];
-    // blockListArr = blockListArr.concat(
-    //   blockList.wan,
-    //   blockList.lan,
-    //   blockList.management,
-    //   blockList.dmz
-    // );
 
     alertCulpritDetail = alertCulpritDetail.map((item) => {
       return !blockList.includes(item.ip)
@@ -80,6 +84,7 @@ class PriorityDoughnutChart extends React.Component {
             target={this.state.target}
             show={this.state.show}
             onHide={this.onHide}
+            option={this.props.option}
           />
 
           <Doughnut data={this.data} />

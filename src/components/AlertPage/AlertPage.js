@@ -4,7 +4,8 @@ import ExportExcel from './ExportExcel';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getAllEvents, getEventByDate } from '../../apis/event';
-
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 class Content extends React.Component {
   state = { startDateTime: '', endDateTime: '', events: [], searchValue: '' };
   getSearchValue = (searchValue) => {
@@ -31,14 +32,32 @@ class Content extends React.Component {
     this.setState({ endDateTime });
     this.filterDate();
   };
+  reloadHandle = () => {
+    this.setState({ events: [] });
+  };
   async componentDidMount() {
     const events = await getAllEvents();
     this.setState({ events });
   }
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.events.length === 0) {
+      const events = await getAllEvents();
+      this.setState({ events });
+    }
+  }
   render() {
     return (
       <div className="container-fluid">
-        <h1 className="h3 mb-4 text-gray-800">Events</h1>
+        <h1 className="h3 mb-4 text-gray-800">
+          Events{' '}
+          <i
+            onClick={this.reloadHandle}
+            style={{ cursor: 'pointer' }}
+            data-toggle="tooltip"
+            title="Reload"
+            class="anticon anticon-reload"
+          ></i>
+        </h1>
         <div>
           <div className="row">
             <div className="col-md-3">
@@ -79,10 +98,22 @@ class Content extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <AlertTable
-              events={this.state.events}
-              getSearchValue={this.getSearchValue}
-            />
+            {this.state.events.length === 0 ? (
+              <center>
+                <Loader
+                  type="Bars"
+                  color="#4e73df"
+                  height={250}
+                  width={250}
+                  //3 secs
+                />
+              </center>
+            ) : (
+              <AlertTable
+                events={this.state.events}
+                getSearchValue={this.getSearchValue}
+              />
+            )}
           </div>
         </div>
       </div>
